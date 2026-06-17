@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hari Om Anand | Portfolio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* --- RESET & BASE STYLES --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #0f172a, #1e3a8a, #3b82f6);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+            color: #f8fafc;
+            min-height: 100vh;
+            overflow-x: hidden;
+            padding: 20px;
+        }
+
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* --- GLASSMORPHISM UTILITIES --- */
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 12px;
+            padding: 20px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .glass-card:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.07);
+            border-color: rgba(255, 255, 255, 0.15);
+        }
+
+        /* --- LAYOUT CONTAINER --- */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 350px 1fr;
+            gap: 25px;
+            margin-top: 20px;
+        }
+
+        /* --- SIDEBAR (LEFT PANEL) --- */
+        aside {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            padding: 30px;
+            height: fit-content;
+            position: sticky;
+            top: 20px;
+        }
+
+        .profile-section {
+            text-align: center;
+        }
+
+        .avatar-container {
+            width: 150px;
+            height: 150px;
+            margin: 0 auto 20px;
+            border-radius: 50%;
+            border: 3px solid rgba(255, 255, 255, 0.2);
+            overflow: hidden;
+            background: rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Style adjusted to make sure your uploaded photo fits flawlessly */
+        .avatar-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .profile-section h1 {
+            font-size: 1.8rem;
+            margin-bottom: 5px;
+            letter-spacing: 0.5px;
+        }
+
+        .profile-section .subtitle {
+            font-size: 1rem;
+            color: #93c5fd;
+            font-weight: 500;
+            margin-bottom: 15px;
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 0.9rem;
+            color: #cbd5e1;
+            text-decoration: none;
+        }
+
+        .contact-item i {
+            color: #60a5fa;
+            width: 20px;
+            text-align: center;
+        }
+
+        .languages-section {
+            margin-top: 15px;
+        }
+
+        .languages-section h3 {
+            font-size: 1.1rem;
+            margin-bottom: 12px;
+            color: #93c5fd;
+        }
+
+        .lang-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .tag {
+            background: rgba(255, 255, 255, 0.08);
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        /* --- MAIN CONTENT (RIGHT PANEL) --- */
+        main {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+
+        section {
+            padding: 30px;
+        }
+
+        section h2 {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            color: #60a5fa;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            padding-bottom: 10px;
+        }
+
+        /* About Section */
+        .about-text {
+            line-height: 1.6;
+            color: #cbd5e1;
+        }
+        
+        .about-text p {
+            margin-bottom: 12px;
+        }
+
+        /* Experience & Education Timelines */
+        .timeline {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .timeline-item h3 {
+            font-size: 1.2rem;
+            color: #f1f5f9;
+        }
+
+        .timeline-item .meta {
+            font-size: 0.85rem;
+            color: #93c5fd;
+            margin: 4px 0 10px 0;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        /* Skills Grid */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 15px;
+        }
+
+        .skill-node {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(255, 255, 255, 0.02);
+        }
+
+        .skill-node i {
+            color: #60a5fa;
+            font-size: 1.1rem;
+        }
+
+        /* Certifications List */
+        .certifications-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .cert-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+        }
+
+        .cert-item i {
+            color: #f59e0b;
+            margin-top: 4px;
+        }
+
+        .cert-details h4 {
+            font-size: 1rem;
+            color: #e2e8f0;
+        }
+
+        /* Dynamic Interaction tab styling */
+        .interactive-counter {
+            display: flex;
+            justify-content: space-around;
+            text-align: center;
+            margin-top: 10px;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.02);
+            border-radius: 8px;
+        }
+
+        .counter-box span {
+            display: block;
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #60a5fa;
+        }
+
+        .counter-box p {
+            font-size: 0.8rem;
+            color: #94a3b8;
+        }
+
+        /* --- RESPONSIVE DESIGN --- */
+        @media (max-width: 968px) {
+            .container {
+                grid-template-columns: 1fr;
+            }
+
+            aside {
+                position: relative;
+                top: 0;
+                width: 100%;
+            }
+        }
+
+        @media (max-width: 480px) {
+            body {
+                padding: 10px;
+            }
+            
+            section, aside {
+                padding: 20px;
+            }
+
+            .skills-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        
+        <aside class="glass-panel">
+            <div class="profile-section">
+                <div class="avatar-container">
+                    <img src="hariom image.jpg" alt="Hari Om Anand">
+                </div>
+                <h1>Hari Om Anand</h1> [cite: 1]
+                <div class="subtitle">BBA S.Y. Student</div> [cite: 2]
+            </div>
+
+            <div class="contact-info">
+                <a href="tel:+919955590256" class="contact-item"> [cite: 4]
+                    <i class="fa-solid fa-phone"></i>
+                    <span>+91 9955590256</span> [cite: 4]
+                </a>
+                <a href="mailto:anandhariom31@gmail.com" class="contact-item"> [cite: 5]
+                    <i class="fa-solid fa-envelope"></i>
+                    <span>anandhariom31@gmail.com</span> [cite: 5]
+                </a>
+                <div class="contact-item">
+                    <i class="fa-solid fa-location-dot"></i>
+                    <span>Kanhe, Pune, MH, 412106</span> [cite: 6]
+                </div>
+            </div>
+
+            <div class="languages-section">
+                <h3>Languages</h3>
+                <div class="lang-tags">
+                    <span class="tag">English (Fluent)</span> [cite: 23]
+                    <span class="tag">Hindi (Fluent)</span> [cite: 24]
+                    <span class="tag">Marathi (Basics)</span> [cite: 25]
+                    <span class="tag">German (Basics)</span> [cite: 26]
+                </div>
+            </div>
+        </aside>
+
+        <main>
+            
+            <section class="glass-panel" id="about">
+                <h2><i class="fa-regular fa-user"></i> About Me</h2>
+                <div class="about-text">
+                    <p>Enthusiastic BBA student and Digital Marketing learner with a strong interest in SEO, social media, Graphic designing, email marketing, and content marketing.</p> [cite: 11]
+                    <p>Skilled in communication, creativity, and problem-solving, with a solid foundation in finance and marketing principles.</p> [cite: 12]
+                    <p>Passionate about building a successful career in digital marketing, graphic design, and business strategy, while continuously learning and applying new tools to deliver tangible results.</p> [cite: 13]
+                </div>
+                
+                <div class="interactive-counter">
+                    <div class="counter-box">
+                        <span class="count-up" data-target="5">0</span>
+                        <p>Certifications</p>
+                    </div>
+                    <div class="counter-box">
+                        <span class="count-up" data-target="10">0</span>
+                        <p>Skills Mastered</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="glass-panel" id="experience">
+                <h2><i class="fa-solid fa-briefcase"></i> Work Experience</h2>
+                <div class="timeline">
+                    <div class="glass-card timeline-item">
+                        <h3>Digital Marketing Intern</h3>
+                        <div class="meta">
+                            <span>Cannibals Media</span> [cite: 15]
+                            <span>Sep 2025</span> [cite: 15]
+                        </div>
+                        <p style="color: #cbd5e1; font-size: 0.95rem;">Gained hands-on experience applying strategic principles to content positioning and active digital channels during an intensive internship engagement.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="glass-panel" id="education">
+                <h2><i class="fa-solid fa-graduation-cap"></i> Education</h2>
+                <div class="timeline">
+                    <div class="glass-card timeline-item">
+                        <h3>BBA S.Y. (Pursuing)</h3> [cite: 8]
+                        <div class="meta">
+                            <span>Pimpri Chinchwad University</span> [cite: 9]
+                            <span>2024 - 2027</span> [cite: 9]
+                        </div>
+                    </div>
+                    <div class="glass-card timeline-item">
+                        <h3>HSC - CBSE Board (Commerce)</h3> [cite: 16, 18]
+                        <div class="meta">
+                            <span>St. Joseph Academy</span> [cite: 17]
+                            <span>2023 - 2024</span> [cite: 18]
+                        </div>
+                    </div>
+                    <div class="glass-card timeline-item">
+                        <h3>SSC - CBSE Board</h3> [cite: 19, 21]
+                        <div class="meta">
+                            <span>St. Paul Public School</span> [cite: 20]
+                            <span>2021 - 2022</span> [cite: 21]
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="glass-panel" id="skills">
+                <h2><i class="fa-solid fa-gears"></i> Skills</h2>
+                <div class="skills-grid">
+                    <div class="glass-card skill-node"><i class="fa-brands fa-square-js"></i> Basic HTML & JS</div> [cite: 28]
+                    <div class="glass-card skill-node"><i class="fa-brands fa-instagram"></i> Social Media Marketing</div> [cite: 29]
+                    <div class="glass-card skill-node"><i class="fa-solid fa-palette"></i> Canva & Graphic Design</div> [cite: 30]
+                    <div class="glass-card skill-node"><i class="fa-solid fa-pen-nib"></i> Copy & Content Writing</div> [cite: 31]
+                    <div class="glass-card skill-node"><i class="fa-solid fa-chart-line"></i> Google Analytics</div> [cite: 32]
+                    <div class="glass-card skill-node"><i class="fa-solid fa-envelope-open-text"></i> Email Marketing (Mailchimp)</div> [cite: 33]
+                    <div class="glass-card skill-node"><i class="fa-solid fa-rectangle-ad"></i> Google & Meta Ads</div> [cite: 36]
+                    <div class="glass-card skill-node"><i class="fa-solid fa-magnifying-glass-chart"></i> Basic SEO</div> [cite: 37]
+                    <div class="glass-card skill-node"><i class="fa-solid fa-comments"></i> Interpersonal Comm.</div> [cite: 34]
+                    <div class="glass-card skill-node"><i class="fa-solid fa-users"></i> Leadership & Teamwork</div> [cite: 35]
+                </div>
+            </section>
+
+            <section class="glass-panel" id="certifications">
+                <h2><i class="fa-solid fa-award"></i> Certifications</h2>
+                <div class="certifications-list">
+                    <div class="cert-item">
+                        <i class="fa-solid fa-circle-check"></i>
+                        <div class="cert-details">
+                            <h4>Foundation in Digital Marketing and E-Commerce</h4> [cite: 39, 40]
+                            <p style="font-size: 0.85rem; color: #94a3b8;">Google</p> [cite: 40]
+                        </div>
+                    </div>
+                    <div class="cert-item">
+                        <i class="fa-solid fa-circle-check"></i>
+                        <div class="cert-details">
+                            <h4>Foundation of Project Management</h4> [cite: 41]
+                            <p style="font-size: 0.85rem; color: #94a3b8;">Google</p> [cite: 41]
+                        </div>
+                    </div>
+                    <div class="cert-item">
+                        <i class="fa-solid fa-circle-check"></i>
+                        <div class="cert-details">
+                            <h4>Google Data Analytics</h4> [cite: 45]
+                            <p style="font-size: 0.85rem; color: #94a3b8;">Google</p> [cite: 45]
+                        </div>
+                    </div>
+                    <div class="cert-item">
+                        <i class="fa-solid fa-circle-check"></i>
+                        <div class="cert-details">
+                            <h4>Introduction of Strategic Brand Management</h4> [cite: 42]
+                            <p style="font-size: 0.85rem; color: #94a3b8;">SPJIMR</p> [cite: 42]
+                        </div>
+                    </div>
+                    <div class="cert-item">
+                        <i class="fa-solid fa-circle-check"></i>
+                        <div class="cert-details">
+                            <h4>Certification in Banking and Insurance</h4> [cite: 44]
+                            <p style="font-size: 0.85rem; color: #94a3b8;">National Stock Exchange (NSE)</p> [cite: 43]
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+        </main>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const counters = document.querySelectorAll('.count-up');
+            
+            counters.forEach(counter => {
+                const target = +counter.getAttribute('data-target');
+                let count = 0;
+                const increment = target / 60; 
+                
+                const updateCounter = () => {
+                    if(count < target) {
+                        count += increment;
+                        counter.innerText = Math.ceil(count);
+                        setTimeout(updateCounter, 25);
+                    } else {
+                        counter.innerText = target;
+                    }
+                };
+                updateCounter();
+            });
+        });
+    </script>
+</body>
+</html>
